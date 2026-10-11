@@ -80,7 +80,7 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(int value) {
+    void delete_val(int value) {
         if (!head) return; // Empty list
 
         Node* temp = head;
@@ -208,20 +208,34 @@ public:
 // Driver program
 int main() {
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
-    for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-    cout << "List forward: ";
+    //Pushing values into list
+    list.push_back(5);
+    list.push_back(10);
+    list.push_back(15);
+    list.push_back(20);
+
+    cout << "Unedited Values: " << endl;
     list.print();
 
-    cout << "List backward: ";
-    list.print_reverse();
-
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
+    //delete_pos test
+    cout << "Values with 3rd position deleted: " << endl;
+    list.delete_pos(2);
     list.print();
+
+    //pop_front test
+    cout << "Values with head deleted:" << endl;
+    list.pop_front();
+    list.print();
+
+    //pop_back test
+    cout << "Values with tail deleted:" << endl;
+    list.pop_back();
+    list.print();
+
+    //delete_val test
+
+
 
     return 0;
 }
