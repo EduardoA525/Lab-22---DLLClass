@@ -103,6 +103,40 @@ public:
 
         delete temp;
     }
+    
+    //New method that deletes based on position
+    void delete_pos(int position) {
+        //First checks if position is valid
+        if (position < 0){
+            cout << "Invalid position." << endl;
+            return;
+        }
+        if (!head) {
+            cout << "Empty list." << endl;
+            return;
+        }
+
+        Node *temp = head;
+
+        //Move to position
+        for (int i = 0; i < position && temp; i++){
+            temp = temp -> next;
+        }
+
+        //Checks if position is over the list
+        if (!temp) {
+            cout << "Position is over the list." << endl;
+            return;
+        }
+
+        if (temp->prev) temp->prev->next = temp->next;
+        else head = temp->next;
+
+        if (temp->next) temp->next->prev = temp->prev;
+        else tail = temp->prev;
+
+        delete temp;
+    }
 
     void print() {
         Node* current = head;
