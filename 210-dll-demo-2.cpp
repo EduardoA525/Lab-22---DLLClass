@@ -129,11 +129,49 @@ public:
             return;
         }
 
-        if (temp->prev) temp->prev->next = temp->next;
-        else head = temp->next;
+        if (temp->prev) 
+            temp->prev->next = temp->next;
+        else 
+            head = temp->next;
 
-        if (temp->next) temp->next->prev = temp->prev;
-        else tail = temp->prev;
+        if (temp->next) 
+            temp->next->prev = temp->prev;
+        else 
+            tail = temp->prev;
+
+        delete temp;
+    }
+
+    //New method to delete head node
+    void pop_front(){
+        if (!head) 
+            return;
+
+        Node *temp = head;
+
+        head = head -> next;
+
+        if (head)
+            head -> prev = nullptr;
+        else
+            tail = nullptr;
+
+        delete temp;
+    }
+
+    //New method to delete tail node
+    void pop_back(){
+        if (!tail)
+            return;
+        
+        Node *temp = tail;
+
+        tail = tail -> prev;
+
+        if (tail)
+            tail -> next = nullptr;
+        else
+            head = nullptr;
 
         delete temp;
     }
