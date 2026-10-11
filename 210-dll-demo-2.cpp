@@ -81,7 +81,10 @@ public:
     }
 
     void delete_val(int value) {
-        if (!head) return; // Empty list
+        if (!head) {
+            cout << "Empty list. No value to delete." << endl;
+            return; // Empty list
+        }
 
         Node* temp = head;
         while (temp && temp->data != value)
@@ -112,7 +115,7 @@ public:
             return;
         }
         if (!head) {
-            cout << "Empty list." << endl;
+            cout << "Empty list. No position to delete." << endl;
             return;
         }
 
@@ -144,8 +147,10 @@ public:
 
     //New method to delete head node
     void pop_front(){
-        if (!head) 
+        if (!head) {
+            cout << "Empty list. No head node to delete." << endl;
             return;
+        }
 
         Node *temp = head;
 
@@ -161,8 +166,10 @@ public:
 
     //New method to delete tail node
     void pop_back(){
-        if (!tail)
+        if (!tail) {
+            cout << "Empty list. No tail node to delete." << endl;
             return;
+        }
         
         Node *temp = tail;
 
@@ -214,6 +221,7 @@ int main() {
     list.push_back(10);
     list.push_back(15);
     list.push_back(20);
+    list.push_back(67);
 
     cout << "Unedited Values: " << endl;
     list.print();
@@ -234,8 +242,25 @@ int main() {
     list.print();
 
     //delete_val test
+    cout << "Value 10 delete: " << endl;
+    list.delete_val(10);
+    list.print();
 
+    //testing user errors
+    cout << "Emptying list: " << endl;
+    list.pop_front();
+    list.print();
 
+    cout << "Attempting to delete in empty list..." << endl;
+    list.pop_front();
+    list.pop_back();
+
+    list.delete_pos(1);
+    list.delete_pos(-1);
+
+    list.delete_val(67);
+
+    cout << "\nTesting complete. You have survived." << endl;
 
     return 0;
 }
